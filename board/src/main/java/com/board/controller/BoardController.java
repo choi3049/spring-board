@@ -22,10 +22,10 @@ public class BoardController {
 	private BoardService service;
 
  
-	//게시물 목
+	//게시물 목록
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void getList(Model model) throws Exception {
-	 List list = null;
+	 List<BoardVO> list = null;
 	 list = service.list();
 	 model.addAttribute("list", list);
 	}
@@ -35,12 +35,20 @@ public class BoardController {
 	public void getWirte() throws Exception {
  
 	}
+	
+	// 게시물 작성
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String posttWirte(BoardVO vo) throws Exception {
+	  service.write(vo);
+	  
+	  return "redirect:/board/list";
+	}
 
 	
 	// 게시물 목록 + 페이징 추가
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
 	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
-	 
+	
 	 // 게시물 총 갯수
 	 int count = service.count();
 	  
@@ -97,5 +105,6 @@ public class BoardController {
 	 
 	// 현재 페이지
 	 model.addAttribute("select", num);
+	
 	}
-}
+}	

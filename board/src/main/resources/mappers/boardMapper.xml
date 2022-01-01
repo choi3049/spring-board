@@ -11,6 +11,13 @@
  from tbl_board
 </select>
 
+<!-- 게시물 작성 -->
+<insert id="write" parameterType="com.board.domain.BoardVO">
+ insert into
+  tbl_board(title, content, writer)
+   values(#{title}, #{content}, #{writer})
+</insert>
+
 <!-- 게시물 총 갯수 -->
 <select id="count" resultType="int">
  select count(bno) from tbl_board

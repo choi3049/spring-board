@@ -32,5 +32,10 @@ public class BoardServiceImpl implements BoardService {
 	public List listPage(int displayPost, int postNum) throws Exception {
 		return dao.listPage(displayPost, postNum);
 	}
+
+	@Override
+	public void write(BoardVO vo) throws Exception {
+		dao.write(vo);		
+	}
  
 }

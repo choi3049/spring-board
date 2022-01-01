@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <title>insert title here</title>
 </head>
+<style>
+	b {color:blue;}
+</style>
 <body>
 
-	<style>
-		b {color:blue;}
-	</style>
+
 
 <div id="nav">
  <%@ include file="../include/nav.jsp" %>
