@@ -7,6 +7,11 @@
 <title>insert title here</title>
 </head>
 <body>
+
+	<style>
+		b {color:blue;}
+	</style>
+
 <div id="nav">
  <%@ include file="../include/nav.jsp" %>
 </div>
@@ -38,11 +43,43 @@
 </table>
 
 <div>
- <c:forEach begin="1" end="${pageNum}" var="num">
+
+<c:if test="${prev}">
+ <span>[ <a href="/board/listPage?num=${firstPageNum}"><<</a> ]</span>
+</c:if>
+
+<c:if test="${prev}">
+ <span>[ <a href="/board/listPage?num=${select - 1}"><</a> ]</span>
+</c:if>
+
+<c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+ <span>
+ 
+  <c:if test="${select != num}">
+   <a href="/board/listPage?num=${num}">${num}</a>
+  </c:if>    
+  
+  <c:if test="${select == num}">
+   <b>${num}</b>
+  </c:if>
+    
+ </span>
+</c:forEach>
+
+<c:if test="${next}">
+ <span>[ <a href="/board/listPage?num=${select + 1}">></a> ]</span>
+</c:if>
+
+<c:if test="${next}">
+ <span>[ <a href="/board/listPage?num=${endPageNum_tmp}">>></a> ]</span>
+</c:if>
+
+
+ <%-- <c:forEach begin="1" end="${pageNum}" var="num">
     <span>
      <a href="/board/listPage?num=${num}">${num}</a>
   </span>
- </c:forEach>
+ </c:forEach> --%>
 </div>
 
 </body>
