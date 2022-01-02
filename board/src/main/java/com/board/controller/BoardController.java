@@ -43,7 +43,14 @@ public class BoardController {
 	  
 	  return "redirect:/board/list";
 	}
-
+	
+	// 게시물 조회
+	@RequestMapping(value = "/view", method = RequestMethod.GET)
+	public void getView(@RequestParam("bno") int bno,Model model) throws Exception {
+		
+		BoardVO vo = service.view(bno);
+		model.addAttribute("view",vo);
+	}
 	
 	// 게시물 목록 + 페이징 추가
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)

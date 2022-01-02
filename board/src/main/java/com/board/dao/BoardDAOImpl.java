@@ -42,10 +42,16 @@ public class BoardDAOImpl implements BoardDAO {
 
 		return sql.selectList(namespace + ".listPage", data);
 	}
-
+	//게시물 작
 	@Override
 	public void write(BoardVO vo) throws Exception {
 		sql.insert(namespace + ".write", vo);		
+	}
+	
+	// 게시물 조회
+	public BoardVO view(int bno) throws Exception {
+	 
+	 return sql.selectOne(namespace + ".view", bno);
 	}
  
 }

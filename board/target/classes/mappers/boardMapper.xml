@@ -18,6 +18,16 @@
    values(#{title}, #{content}, #{writer})
 </insert>
 
+<!-- 게시물 조회 -->
+<select id="view" parameterType="int" resultType="com.board.domain.BoardVO">
+ select 
+  bno, title, content, writer, regDate, viewCnt
+ from 
+  tbl_board
+ where
+  bno = #{bno}   
+</select>
+
 <!-- 게시물 총 갯수 -->
 <select id="count" resultType="int">
  select count(bno) from tbl_board

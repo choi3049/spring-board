@@ -14,9 +14,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Inject
 	private BoardDAO dao;
- 
+	
+	
+	//게시물 목록
 	@Override
-	public List list() throws Exception {
+	public List<BoardVO> list() throws Exception {
 
 		return dao.list();
 	}
@@ -36,6 +38,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void write(BoardVO vo) throws Exception {
 		dao.write(vo);		
+	}
+	
+	// 게시물 조회
+	@Override
+	public BoardVO view(int bno) throws Exception {
+
+	 return dao.view(bno);
 	}
  
 }
