@@ -83,7 +83,31 @@
      <a href="/board/listPage?num=${num}">${num}</a>
   </span>
  </c:forEach> --%>
+ 
+ <div>
+  <select name="searchType">
+      <option value="title">제목</option>
+         <option value="content">내용</option>
+      <option value="title_content">제목+내용</option>
+      <option value="writer">작성자</option>
+  </select>
+  
+  <input type="text" name="keyword" />
+  
+  <button type="button" id="searchBtn">검색</button>
+ </div>
 </div>
+
+<script>
+
+ document.getElementById("searchBtn").onclick = function () {
+    
+  let searchType = document.getElementsByName("searchType")[0].value;
+  let keyword =  document.getElementsByName("keyword")[0].value;
+  
+  location.href = "/board/listPage?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+ };
+</script>
 
 </body>
 </html>

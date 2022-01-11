@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.board.dao.BoardDAO;
+
 import com.board.domain.BoardVO;
 import com.board.service.BoardService;
 
@@ -52,9 +52,12 @@ public class BoardController {
 		model.addAttribute("view",vo);
 	}
 	
-	// 게시물 목록 + 페이징 추가
+	// 게시물 목록 + 페이징 추가 검색
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+	public void getListPage(Model model, @RequestParam("num") int num,
+			@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+			   @RequestParam(value = "keyword",required = false, defaultValue = "") String keyword
+			  ) throws Exception {
 	
 	 // 게시물 총 갯수
 	 int count = service.count();
@@ -91,8 +94,9 @@ public class BoardController {
 	 boolean next = num == endPageNum_tmp ? false : true;
 	 
 	 
-	 List list = null; 
-	 list = service.listPage(displayPost, postNum);
+	 List<BoardVO> list = null; 
+	 //list = service.listPage(displayPost, postNum);
+	 list = service.listPage(displayPost, postNum, searchType, keyword);
 	 model.addAttribute("list", list);   
 	 model.addAttribute("pageNum", pageNum);
 	 

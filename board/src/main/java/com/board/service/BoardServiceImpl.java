@@ -29,10 +29,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.count();
 	}
 
-	//게시물 목록 + 페이징
+	//게시물 목록 + 페이징 + 검색
 	@Override
-	public List listPage(int displayPost, int postNum) throws Exception {
-		return dao.listPage(displayPost, postNum);
+	public List<BoardVO> listPage(int displayPost, int postNum, String searchType, String keyword) throws Exception {
+		 return  dao.listPage(displayPost, postNum, searchType, keyword);
 	}
 
 	@Override
