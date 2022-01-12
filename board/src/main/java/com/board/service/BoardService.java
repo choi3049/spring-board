@@ -18,6 +18,9 @@ public interface BoardService {
 	// 게시물 목록 + 페이징 + 검
 	public List<BoardVO> listPage(int displayPost, int postNum, String searchType, String keyword) throws Exception;
 	
+	// 게시물 총 갯수 + 검색 적용
+	public int searchCount(String searchType, String keyword) throws Exception;
+	
 	// 게시물 조회
 	public BoardVO view(int bno) throws Exception;
 }

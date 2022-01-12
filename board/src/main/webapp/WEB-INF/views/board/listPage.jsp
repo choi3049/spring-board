@@ -84,18 +84,19 @@
   </span>
  </c:forEach> --%>
  
- <div>
-  <select name="searchType">
-      <option value="title">제목</option>
-         <option value="content">내용</option>
-      <option value="title_content">제목+내용</option>
-      <option value="writer">작성자</option>
-  </select>
-  
-  <input type="text" name="keyword" />
-  
-  <button type="button" id="searchBtn">검색</button>
- </div>
+<div>
+ <select name="searchType">
+     <option value="title" <c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
+        <option value="content" <c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
+     <option value="title_content" <c:if test="${searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+     <option value="writer" <c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
+ </select>
+ 
+ <input type="text" name="keyword" value="${keyword}"/>
+ 
+ <button type="button" id="searchBtn">검색</button>
+</div>
+ 
 </div>
 
 <script>

@@ -34,6 +34,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> listPage(int displayPost, int postNum, String searchType, String keyword) throws Exception {
 		 return  dao.listPage(displayPost, postNum, searchType, keyword);
 	}
+	
+	// 게시물 총 갯수
+	@Override
+	public int searchCount(String searchType, String keyword) throws Exception {
+	 return dao.searchCount(searchType, keyword);
+	}
 
 	@Override
 	public void write(BoardVO vo) throws Exception {

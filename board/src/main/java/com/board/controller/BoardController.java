@@ -61,6 +61,9 @@ public class BoardController {
 	
 	 // 게시물 총 갯수
 	 int count = service.count();
+	 	 
+	 //검색 게시물 총 갯수
+	 count = service.searchCount(searchType, keyword);
 	  
 	 // 한 페이지에 출력할 게시물 갯수
 	 int postNum = 5;
@@ -93,12 +96,16 @@ public class BoardController {
 	 boolean prev = num == 1 ? false : true;
 	 boolean next = num == endPageNum_tmp ? false : true;
 	 
+
 	 
 	 List<BoardVO> list = null; 
 	 //list = service.listPage(displayPost, postNum);
 	 list = service.listPage(displayPost, postNum, searchType, keyword);
 	 model.addAttribute("list", list);   
 	 model.addAttribute("pageNum", pageNum);
+	 
+	 model.addAttribute("searchType", searchType);
+	 model.addAttribute("keyword", keyword);
 	 
 	 
 	//페이징 수
