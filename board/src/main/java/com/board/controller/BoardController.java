@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import com.board.domain.BoardVO;
 import com.board.service.BoardService;
 
@@ -96,6 +95,16 @@ public class BoardController {
 	 boolean prev = num == 1 ? false : true;
 	 boolean next = num == endPageNum_tmp ? false : true;
 	 
+		//검색 타입과 검색어
+
+	 String searchTypeKeyword = "";
+		
+		 if(searchType.equals("") || keyword.equals("")) {
+			
+			 searchTypeKeyword = ""; 		 
+		 } else {	  
+			 searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword; 		 
+		 } 
 
 	 
 	 List<BoardVO> list = null; 
@@ -106,6 +115,7 @@ public class BoardController {
 	 
 	 model.addAttribute("searchType", searchType);
 	 model.addAttribute("keyword", keyword);
+	 model.addAttribute("searchTypeKeyword", searchTypeKeyword);
 	 
 	 
 	//페이징 수
@@ -124,5 +134,9 @@ public class BoardController {
 	// 현재 페이지
 	 model.addAttribute("select", num);
 	
+	
+	 
 	}
 }	
+
+

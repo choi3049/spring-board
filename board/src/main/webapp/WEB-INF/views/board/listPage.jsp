@@ -48,18 +48,18 @@
 <div>
 
 <c:if test="${prev}">
- <span>[ <a href="/board/listPage?num=${firstPageNum}"><<</a> ]</span>
+ <span>[ <a href="/board/listPage?num=${firstPageNum}${searchTypeKeyword}"><<</a> ]</span>
 </c:if>
 
 <c:if test="${prev}">
- <span>[ <a href="/board/listPage?num=${select - 1}"><</a> ]</span>
+ <span>[ <a href="/board/listPage?num=${select - 1}${searchTypeKeyword}"><</a> ]</span>
 </c:if>
 
 <c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
  <span>
  
   <c:if test="${select != num}">
-   <a href="/board/listPage?num=${num}">${num}</a>
+   <a href="/board/listPage?num=${num}${searchTypeKeyword}">${num}</a>
   </c:if>    
   
   <c:if test="${select == num}">
@@ -70,11 +70,11 @@
 </c:forEach>
 
 <c:if test="${next}">
- <span>[ <a href="/board/listPage?num=${select + 1}">></a> ]</span>
+ <span>[ <a href="/board/listPage?num=${select + 1}${searchTypeKeyword}">></a> ]</span>
 </c:if>
 
 <c:if test="${next}">
- <span>[ <a href="/board/listPage?num=${endPageNum_tmp}">>></a> ]</span>
+ <span>[ <a href="/board/listPage?num=${endPageNum_tmp}${searchTypeKeyword}">>></a> ]</span>
 </c:if>
 
 
