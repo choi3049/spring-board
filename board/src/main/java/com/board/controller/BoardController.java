@@ -96,7 +96,6 @@ public class BoardController {
 	 boolean next = num == endPageNum_tmp ? false : true;
 	 
 		//검색 타입과 검색어
-
 	 String searchTypeKeyword = "";
 		
 		 if(searchType.equals("") || keyword.equals("")) {
@@ -113,9 +112,12 @@ public class BoardController {
 	 model.addAttribute("list", list);   
 	 model.addAttribute("pageNum", pageNum);
 	 
+
+	 
+	 //검색 키워드 찾기
+	 model.addAttribute("searchTypeKeyword", searchTypeKeyword);
 	 model.addAttribute("searchType", searchType);
 	 model.addAttribute("keyword", keyword);
-	 model.addAttribute("searchTypeKeyword", searchTypeKeyword);
 	 
 	 
 	//페이징 수
