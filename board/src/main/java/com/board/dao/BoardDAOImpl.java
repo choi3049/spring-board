@@ -33,7 +33,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	//게시물 목록 + 페이징 + 검색
 	@Override
-	public List<BoardVO> listPage( int displayPost, int postNum, String searchType, String keyword) throws Exception {
+	public List<BoardVO> listPage( int displayPost, int postNum, String searchType, String keyword , String fromDate, String toDate) throws Exception {
 
 		  HashMap<String, Object> data = new HashMap<String, Object>();
 		  
@@ -42,6 +42,10 @@ public class BoardDAOImpl implements BoardDAO {
 		  
 		  data.put("searchType", searchType);
 		  data.put("keyword", keyword);
+		  
+		  data.put("fromDate", fromDate);
+		  data.put("toDate", toDate);
+		  
 		  
 		  return sql.selectList(namespace + ".listPage", data);
 		 }
@@ -54,6 +58,20 @@ public class BoardDAOImpl implements BoardDAO {
 	 
 	 data.put("searchType", searchType);
 	 data.put("keyword", keyword);
+	 
+	 
+	 return sql.selectOne(namespace + ".searchCount", data); 
+	}
+	
+	// 게시물 총 갯수 + 달력 적용
+	@Override
+	public int calCount(String fromDate, String toDate) throws Exception {
+	 
+	 HashMap<String, Object> data = new HashMap<String, Object>();
+	 
+	 
+	  data.put("fromDate", fromDate);
+	  data.put("toDate", toDate);
 	 
 	 return sql.selectOne(namespace + ".searchCount", data); 
 	}

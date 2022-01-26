@@ -25,8 +25,8 @@
 
 
 <div>
-From: <input type="text" name="fromDate" id="fromDate">&nbsp;&nbsp;
-To: <input type="text" name="toDate" id="toDate">
+From: <input type="text" name="fromDate" id="fromDate" value="${fromDate}">&nbsp;&nbsp;
+To: <input type="text" name="toDate" id="toDate" value="${toDate}">
 </div>
 
 		<table>
@@ -118,8 +118,11 @@ To: <input type="text" name="toDate" id="toDate">
     
   let searchType = document.getElementsByName("searchType")[0].value;
   let keyword =  document.getElementsByName("keyword")[0].value;
+  let fromDate =  document.getElementsByName("fromDate")[0].value;
+  let toDate =  document.getElementsByName("toDate")[0].value;
   
-  location.href = "/board/listPage?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+  
+  location.href = "/board/listPage?num=1" + "&searchType=" + searchType + "&keyword=" + keyword + "&fromDate=" + fromDate +  "&toDate=" + toDate;
  };
  
  /* 캘린더 설정 */
@@ -144,12 +147,13 @@ To: <input type="text" name="toDate" id="toDate">
 	}
 	
 	/* 캘린더 */
-
+  
 	  $( "#fromDate" ).datepicker(config);
 	  $( "#toDate" ).datepicker(config);
 	  
-	  $( "#fromDate" ).datepicker('setDate','today');
+	  $( "#fromDate" ).datepicker('setDate','today')
 	  $( "#toDate" ).datepicker('setDate','+1D');
+	  
 
 
 	});

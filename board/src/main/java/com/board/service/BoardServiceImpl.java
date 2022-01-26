@@ -31,14 +31,20 @@ public class BoardServiceImpl implements BoardService {
 
 	//게시물 목록 + 페이징 + 검색
 	@Override
-	public List<BoardVO> listPage(int displayPost, int postNum, String searchType, String keyword) throws Exception {
-		 return  dao.listPage(displayPost, postNum, searchType, keyword);
+	public List<BoardVO> listPage(int displayPost, int postNum, String searchType, String keyword, String fromDate, String toDate) throws Exception {
+		 return  dao.listPage(displayPost, postNum, searchType, keyword, fromDate, toDate);
 	}
 	
 	// 게시물 총 갯수
 	@Override
 	public int searchCount(String searchType, String keyword) throws Exception {
 	 return dao.searchCount(searchType, keyword);
+	}
+	
+	// 달력 총 갯수
+	@Override
+	public int calCount( String fromDate, String toDate) throws Exception {
+	 return dao.searchCount(fromDate, toDate);
 	}
 
 	@Override
