@@ -19,7 +19,7 @@ public class BoardController {
 
 	@Inject
 	private BoardService service;
-	
+
  
 	//게시물 목록
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -51,6 +51,33 @@ public class BoardController {
 		model.addAttribute("view",vo);
 	}
 	
+	// 게시물 수정
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void getModify(@RequestParam("bno") int bno, Model model) throws Exception {
+
+	 BoardVO vo = service.view(bno);
+	   
+	 model.addAttribute("view", vo);
+	}
+	
+	// 게시물 수정
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String postModify(BoardVO vo) throws Exception {
+
+	 service.modify(vo);
+	   
+	 return "redirect:/board/view?bno=" + vo.getBno();
+	}
+	
+	// 게시물 삭제
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String getDelete(@RequestParam("bno") int bno) throws Exception {
+	  
+	 service.delete(bno);  
+
+	 return "redirect:/board/list";
+	}
+	
 	// 게시물 목록 + 페이징 추가 검색
 	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
 	public void getListPage(Model model, @RequestParam("num") int num,
@@ -60,20 +87,14 @@ public class BoardController {
 			   @RequestParam(value = "toDate",required = false, defaultValue = "") String toDate
 			  ) throws Exception {
 	
+
+
+		
 	 // 게시물 총 갯수
 	 int count = service.count();
 	 	 
-	 if(service.searchCount(searchType, keyword) != 0) {
-	 
 	 count = service.searchCount(searchType, keyword);	 
 	 
-	 }else if (service.calCount(fromDate, toDate) != 0) {
-		 
-	 count = service.calCount(fromDate, toDate);
-	 
-	 } else
-	 count = service.count(); 
-	  
 	 // 한 페이지에 출력할 게시물 갯수
 	 int postNum = 5;
 	  
@@ -108,22 +129,12 @@ public class BoardController {
 		//검색 타입과 검색어
 	 String searchTypeKeyword = "";
 		
-		 if(searchType != null && keyword != null && fromDate != null && toDate != null) {
-			 
-			 searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword + "&fromDate=" + fromDate +  "&toDate=" + toDate; 
-			 
-		 } else if(searchType != null && keyword != null && fromDate == null && toDate == null){	  
-			 
-			 searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword; 		 
-			 
-		 } else if(searchType != null &&keyword == null && fromDate != null && toDate != null) {
-			 
-			 searchTypeKeyword = "&fromDate=" + fromDate +  "&toDate=" + toDate;
-			 
-		 } else {
-			 searchTypeKeyword ="&searchType=" + searchType;
- 	 
-		 }
+	 if(searchType.equals("") || keyword.equals("")) {		 
+		 searchTypeKeyword = ""; 		 
+	 } else {	
+		 searchTypeKeyword = "&searchType=" + searchType + "&keyword=" + keyword; 		 
+	 }  	
+	
 
 	 
 	 List<BoardVO> list = null; 
@@ -158,6 +169,7 @@ public class BoardController {
 	// 현재 페이지
 	 model.addAttribute("select", num);
 	
+
 	
 	 
 	}

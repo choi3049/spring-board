@@ -3,7 +3,7 @@
 
 <ul> 
 	<li>
- 		<a href="/board/listPage?num=1">글 목록(페이징)</a> 
+ 		<a href="/board/listPage?num=1">게시판</a> 
 	</li>
 	
  	<li>

@@ -15,6 +15,15 @@ public interface BoardService {
 	// 게시물 총 갯수
 	public int count() throws Exception;
 	
+	// 게시물 조회
+	public BoardVO view(int bno) throws Exception;
+	
+	// 게시물 수정
+	public void modify(BoardVO vo) throws Exception;
+	
+	// 게시물 삭제
+	public void delete(int bno) throws Exception;
+	
 	// 게시물 목록 + 페이징 + 검
 	public List<BoardVO> listPage(int displayPost, int postNum, String searchType, String keyword, String fromDate, String toDate) throws Exception;
 	
@@ -24,6 +33,5 @@ public interface BoardService {
 	// 게시물 총 갯수 + 달력 적용
 	public int calCount(String fromDate, String toDate) throws Exception;
 	
-	// 게시물 조회
-	public BoardVO view(int bno) throws Exception;
+
 }
