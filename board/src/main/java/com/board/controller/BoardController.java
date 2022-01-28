@@ -75,7 +75,7 @@ public class BoardController {
 	  
 	 service.delete(bno);  
 
-	 return "redirect:/board/list";
+	 return "redirect:/board/listPage?num=1";
 	}
 	
 	// 게시물 목록 + 페이징 추가 검색
