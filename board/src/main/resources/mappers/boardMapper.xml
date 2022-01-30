@@ -7,14 +7,16 @@
 	<!-- 게시물 목록 -->
 	<select id="list" resultType="com.board.domain.BoardVO">
 		select
-		bno, title, content, writer, regDate, viewCnt
+		bno, title, content, writer,
+		regDate, viewCnt
 		from tbl_board
 	</select>
 
 	<!-- 게시물 작성 -->
 	<insert id="write" parameterType="com.board.domain.BoardVO">
 		insert into
-		tbl_board(title, content, writer)
+		tbl_board(title,
+		content, writer)
 		values(#{title}, #{content}, #{writer})
 	</insert>
 
@@ -33,7 +35,8 @@
 	<update id="modify" parameterType="com.board.domain.BoardVO">
 		update tbl_board
 		set
-		title = #{title},
+		title =
+		#{title},
 		content = #{content},
 		writer = #{writer}
 		where bno = #{bno}
@@ -43,7 +46,8 @@
 	<delete id="delete" parameterType="int">
 		delete
 		from tbl_board
-		where bno = #{bno}
+		where bno
+		= #{bno}
 	</delete>
 
 	<!-- 게시물 총 갯수 -->
@@ -58,22 +62,22 @@
 		bno, title, writer, regDate, viewCnt
 		from tbl_board
 
-		<if test='searchType.equals("title")'>
-			WHERE title LIKE concat('%', #{keyword}, '%')
-		</if>
+ <if test='searchType.equals("title")'>
+  WHERE title LIKE concat('%', #{keyword}, '%')
+ </if>
 
-		<if test='searchType.equals("content")'>
-			WHERE content LIKE concat('%', #{keyword}, '%')
-		</if>
+ <if test='searchType.equals("content")'>
+  WHERE content LIKE concat('%', #{keyword}, '%')
+ </if>
 
-		<if test='searchType.equals("title_content")'>
-			WHERE title LIKE concat('%', #{keyword}, '%')
-			or content LIKE concat('%', #{keyword}, '%')
-		</if>
+ <if test='searchType.equals("title_content")'>
+  WHERE title LIKE concat('%', #{keyword}, '%') 
+   or content LIKE concat('%', #{keyword}, '%')
+ </if>
 
-		<if test='searchType.equals("writer")'>
-			WHERE writer LIKE concat('%', #{keyword}, '%')
-		</if>
+ <if test='searchType.equals("writer")'>
+  WHERE writer LIKE concat('%', #{keyword}, '%')
+ </if>
 
 		order by bno desc
 		limit #{displayPost}, #{postNum}
@@ -84,22 +88,25 @@
 		resultType="int">
 		select count(bno) from tbl_board
 
-		<if test='searchType.equals("title")'>
-			WHERE title LIKE concat('%', #{keyword}, '%')
-		</if>
+	 <if test='searchType.equals("title")'>
+  WHERE title LIKE concat('%', #{keyword}, '%')
+ </if>
 
-		<if test='searchType.equals("content")'>
-			WHERE content LIKE concat('%', #{keyword}, '%')
-		</if>
+ <if test='searchType.equals("content")'>
+  WHERE content LIKE concat('%', #{keyword}, '%')
+ </if>
 
-		<if test='searchType.equals("title_content")'>
-			WHERE title LIKE concat('%', #{keyword}, '%')
-			or content LIKE concat('%', #{keyword}, '%')
-		</if>
+ <if test='searchType.equals("title_content")'>
+  WHERE title LIKE concat('%', #{keyword}, '%') 
+   or content LIKE concat('%', #{keyword}, '%')
+ </if>
 
-		<if test='searchType.equals("writer")'>
-			WHERE writer LIKE concat('%', #{keyword}, '%')
-		</if>
+ <if test='searchType.equals("writer")'>
+  WHERE writer LIKE concat('%', #{keyword}, '%')
+ </if>
 
 	</select>
 </mapper>
+
+
+

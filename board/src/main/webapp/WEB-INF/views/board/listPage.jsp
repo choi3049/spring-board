@@ -72,7 +72,8 @@ b {
 
 	<div>
 		From: <input type="text" name="fromDate" id="fromDate"
-			value="${fromDate}">&nbsp;&nbsp; To: <input type="text"
+			value="${fromDate}">&nbsp;&nbsp; 
+			To: <input type="text"
 			name="toDate" id="toDate" value="${toDate}">
 	</div>
 
@@ -107,22 +108,22 @@ b {
 
 	<div>
 
-		<c:if test="${prev}">
+		<c:if test="${page.prev}">
 			<span>[ <a
-				href="/board/listPage?num=${firstPageNum}${searchTypeKeyword}"><<</a>
+				href="/board/listPage?num=${page.firstPageNum}${page.searchTypeKeyword}"><<</a>
 				]
 			</span>
 		</c:if>
 
-		<c:if test="${prev}">
+		<c:if test="${page.prev}">
 			<span>[ <a
-				href="/board/listPage?num=${select - 1}${searchTypeKeyword}"><</a> ]
+				href="/board/listPage?num=${select - 1}${page.searchTypeKeyword}"><</a> ]
 			</span>
 		</c:if>
 
-		<c:forEach begin="${startPageNum}" end="${endPageNum}" var="num">
+		<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 			<span> <c:if test="${select != num}">
-					<a href="/board/listPage?num=${num}${searchTypeKeyword}">${num}</a>
+					<a href="/board/listPage?num=${num}${page.searchTypeKeyword}">${num}</a>
 				</c:if> <c:if test="${select == num}">
 					<b>${num}</b>
 				</c:if>
@@ -130,15 +131,15 @@ b {
 			</span>
 		</c:forEach>
 
-		<c:if test="${next}">
+		<c:if test="${page.next}">
 			<span>[ <a
-				href="/board/listPage?num=${select + 1}${searchTypeKeyword}">></a> ]
+				href="/board/listPage?num=${select + 1}${page.searchTypeKeyword}">></a> ]
 			</span>
 		</c:if>
 
-		<c:if test="${next}">
+		<c:if test="${page.next}">
 			<span>[ <a
-				href="/board/listPage?num=${endPageNum_tmp}${searchTypeKeyword}">>></a>
+				href="/board/listPage?num=${page.pageNum}${page.searchTypeKeyword}">>></a>
 				]
 			</span>
 		</c:if>
@@ -153,14 +154,14 @@ b {
 		<div>
 			<select name="searchType">
 				<option value="title"
-					<c:if test="${searchType eq 'title'}">selected</c:if>>제목</option>
+					<c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
 				<option value="content"
-					<c:if test="${searchType eq 'content'}">selected</c:if>>내용</option>
+					<c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
 				<option value="title_content"
-					<c:if test="${searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+					<c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
 				<option value="writer"
-					<c:if test="${searchType eq 'writer'}">selected</c:if>>작성자</option>
-			</select> <input type="text" name="keyword" value="${keyword}" />
+					<c:if test="${page.searchType eq 'writer'}">selected</c:if>>작성자</option>
+			</select> <input type="text" name="keyword" value="${page.keyword}" />
 
 			<button type="button" id="searchBtn">검색</button>
 		</div>
@@ -221,15 +222,16 @@ b {
 
 			}
 
-			/* 캘린더 */
-
 			$("#fromDate").datepicker(config);
 			$("#toDate").datepicker(config);
-
-			$("#fromDate").datepicker('setDate', 'today')
-			$("#toDate").datepicker('setDate', '+1D');
+			
+			$("#fromDate").datepicker('setDate', '-1Y');
+			$("#toDate").datepicker('setDate', 'today');
 
 		});
+		/* 캘린더 */
+
+
 	</script>
 
 </body>
