@@ -115,10 +115,14 @@ public class Page {
 	// 검색 타입과 검색어
 	public String getSearchTypeKeyword() {
 		 
-		 if(searchType.equals("") || keyword.equals("")) {
-		  return ""; 
-		 } else {
+		 if((searchType.equals(searchType) && keyword.equals(keyword)) && (fromDate != null || toDate != null)) {
+		 return "&searchType=" + searchType + "&keyword=" + keyword + "&fromDate=" + fromDate + "&toDate=" + toDate; 
+		 } else if((searchType.equals(searchType) || keyword.equals(keyword)) && (fromDate == null || toDate == null)){
 		  return "&searchType=" + searchType + "&keyword=" + keyword; 
+		 } else if((searchType.equals("") || keyword.equals("")) && (fromDate != null || toDate != null)) {	
+		  return "&fromDate=" + fromDate + "&toDate=" + toDate;
+		 } else {
+		  return ""; 
 		 }
 		}
 
@@ -140,4 +144,25 @@ public class Page {
 		public String getKeyword() {
 		 return keyword;
 		}
+		
+		private String fromDate;
+		private String toDate; 
+		
+		public String getFromDate() {
+			return fromDate;
+		}
+
+		public void setFromDate(String fromDate) {
+			this.fromDate = fromDate;
+		}
+
+		public String getToDate() {
+			return toDate;
+		}
+
+		public void setToDate(String toDate) {
+			this.toDate = toDate;
+		}
+
+
 }

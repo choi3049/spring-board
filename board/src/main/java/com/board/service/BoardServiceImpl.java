@@ -62,16 +62,10 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 게시물 총 갯수
 	@Override
-	public int searchCount(String searchType, String keyword) throws Exception {
-	 return dao.searchCount(searchType, keyword);
+	public int searchCount(String searchType, String keyword,String fromDate, String toDate) throws Exception {
+	 return dao.searchCount(searchType, keyword, fromDate, toDate);
 	}
 	
-	// 달력 총 갯수
-	@Override
-	public int calCount( String fromDate, String toDate) throws Exception {
-	 return dao.searchCount(fromDate, toDate);
-	}
-
 
  
 }

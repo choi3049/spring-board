@@ -62,23 +62,18 @@
 		bno, title, writer, regDate, viewCnt
 		from tbl_board
 
- <if test='searchType.equals("title")'>
-  WHERE title LIKE concat('%', #{keyword}, '%')
+ <if test='(searchType.equals("title") or searchType.equals("content") or searchType.equals("title_content") or searchType.equals("writer")) and (fromDate == "" and toDate == "")'>
+  WHERE ${searchType} LIKE concat('%', #{keyword}, '%')
  </if>
-
- <if test='searchType.equals("content")'>
-  WHERE content LIKE concat('%', #{keyword}, '%')
+ 
+  <if test='(searchType.equals("title") or searchType.equals("content") or searchType.equals("title_content") or searchType.equals("writer")) and keyword.equals("") and (fromDate != "" and toDate != "")'>
+  WHERE regDate BETWEEN #{fromDate} and #{toDate}
  </if>
-
- <if test='searchType.equals("title_content")'>
-  WHERE title LIKE concat('%', #{keyword}, '%') 
-   or content LIKE concat('%', #{keyword}, '%')
+ 
+   <if test='(searchType.equals("title") or searchType.equals("content") or searchType.equals("title_content") or searchType.equals("writer")) and keyword != "" and (fromDate != "" and toDate != "")'>
+  WHERE ${searchType} LIKE concat('%', #{keyword}, '%')
+  and regDate BETWEEN #{fromDate} AND #{toDate}
  </if>
-
- <if test='searchType.equals("writer")'>
-  WHERE writer LIKE concat('%', #{keyword}, '%')
- </if>
-
 		order by bno desc
 		limit #{displayPost}, #{postNum}
 	</select>
@@ -88,24 +83,21 @@
 		resultType="int">
 		select count(bno) from tbl_board
 
-	 <if test='searchType.equals("title")'>
-  WHERE title LIKE concat('%', #{keyword}, '%')
+  <if test='(searchType.equals("title") or searchType.equals("content") or searchType.equals("title_content") or searchType.equals("writer")) and (fromDate == "" and toDate == "")'>
+  WHERE ${searchType} LIKE concat('%', #{keyword}, '%')
  </if>
 
- <if test='searchType.equals("content")'>
-  WHERE content LIKE concat('%', #{keyword}, '%')
+  <if test='(searchType.equals("title") or searchType.equals("content") or searchType.equals("title_content") or searchType.equals("writer")) and keyword.equals("") and (fromDate != "" and toDate != "")'>
+  WHERE regDate BETWEEN #{fromDate} and #{toDate}
  </if>
-
- <if test='searchType.equals("title_content")'>
-  WHERE title LIKE concat('%', #{keyword}, '%') 
-   or content LIKE concat('%', #{keyword}, '%')
- </if>
-
- <if test='searchType.equals("writer")'>
-  WHERE writer LIKE concat('%', #{keyword}, '%')
+ 
+    <if test='(searchType.equals("title") or searchType.equals("content") or searchType.equals("title_content") or searchType.equals("writer")) and keyword != "" and (fromDate != "" and toDate != "")'>
+  WHERE ${searchType} LIKE concat('%', #{keyword}, '%')
+  and regDate BETWEEN #{fromDate} AND #{toDate}
  </if>
 
 	</select>
+
 </mapper>
 
 

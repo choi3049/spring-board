@@ -75,29 +75,19 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	// 게시물 총 갯수 + 검색 적용
 	@Override
-	public int searchCount(String searchType, String keyword) throws Exception {
+	public int searchCount(String searchType, String keyword, String fromDate, String toDate) throws Exception {
 	 
 	 HashMap<String, Object> data = new HashMap<String, Object>();
 	 
 	 data.put("searchType", searchType);
 	 data.put("keyword", keyword);
 	 
+	  data.put("fromDate", fromDate);
+	  data.put("toDate", toDate);	 
 	 
 	 return sql.selectOne(namespace + ".searchCount", data); 
 	}
 	
-	// 게시물 총 갯수 + 달력 적용
-	@Override
-	public int calCount(String fromDate, String toDate) throws Exception {
-	 
-	 HashMap<String, Object> data = new HashMap<String, Object>();
-	 
-	 
-	  data.put("fromDate", fromDate);
-	  data.put("toDate", toDate);
-	 
-	 return sql.selectOne(namespace + ".searchCount", data); 
-	}
 	
 
  

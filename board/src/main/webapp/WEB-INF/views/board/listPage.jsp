@@ -71,10 +71,10 @@ b {
 
 
 	<div>
-		From: <input type="text" name="fromDate" id="fromDate"
-			value="${fromDate}">&nbsp;&nbsp; 
-			To: <input type="text"
-			name="toDate" id="toDate" value="${toDate}">
+		From: <input type="text" name="fromDate" id="fromDate" value="${page.fromDate}"
+			/>&nbsp;&nbsp; 
+			To: <input type="text" 
+			name="toDate" id="toDate" value="${page.toDate}" />
 	</div>
 
 	<table>
@@ -220,14 +220,11 @@ b {
 				,
 				maxDate : "+1Y" // 최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후) });
 
-			}
+			 }
 
 			$("#fromDate").datepicker(config);
 			$("#toDate").datepicker(config);
 			
-			$("#fromDate").datepicker('setDate', '-1Y');
-			$("#toDate").datepicker('setDate', 'today');
-
 		});
 		/* 캘린더 */
 

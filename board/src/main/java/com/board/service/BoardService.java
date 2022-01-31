@@ -28,10 +28,7 @@ public interface BoardService {
 	public List<BoardVO> listPage(int displayPost, int postNum, String searchType, String keyword, String fromDate, String toDate) throws Exception;
 	
 	// 게시물 총 갯수 + 검색 적용
-	public int searchCount(String searchType, String keyword) throws Exception;
-	
-	// 게시물 총 갯수 + 달력 적용
-	public int calCount(String fromDate, String toDate) throws Exception;
+	public int searchCount(String searchType, String keyword, String fromDate, String toDate) throws Exception;
 	
 
 }
