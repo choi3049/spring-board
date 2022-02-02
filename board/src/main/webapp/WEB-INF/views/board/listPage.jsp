@@ -198,6 +198,12 @@ b {
 				,
 				changeMonth : true // 콤보박스에서 월 선택 가능
 				,
+				showButtonPanel: true
+				,
+			    currentText: "오늘"
+			    ,
+				closeText: "Clear"
+				,
 				showOn : "both" // button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시
 				,
 				buttonImage : "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" // 버튼 이미지 경로       ,buttonImageOnly: true // 기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
@@ -219,15 +225,28 @@ b {
 				minDate : "-1Y" // 최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
 				,
 				maxDate : "+1Y" // 최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후) });
+				,
 
 			 }
 
 			$("#fromDate").datepicker(config);
 			$("#toDate").datepicker(config);
 			
-		});
-		/* 캘린더 */
+			
+			//오늘(Today) 버튼 클릭 시 오늘 날짜를 적용하고 창을 닫는다.
+			$('button.ui-datepicker-current').live('click', function() {
 
+			    $.datepicker._curInst.input.datepicker('setDate', new Date()).datepicker('hide').blur();
+
+			});
+			
+			//Close(Clear) 버튼 클릭 시 값을 지우고 창을 닫는다.
+			$('button.ui-datepicker-close').live('click', function() {
+
+			    $.datepicker._curInst.input.datepicker('setDate', '').datepicker('hide').blur();
+
+			});
+		});
 
 	</script>
 
